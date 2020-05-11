@@ -9,6 +9,7 @@ export default function FriendList() {
       axiosWithAuth()
         .get("/friends")
         .then(res => {
+          console.log(res);
           setList(res.data);
         })
         .catch(err => {

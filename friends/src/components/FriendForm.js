@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 
 function FriendForm ({history}) {
   const [friend, setFriend] = useState({
-      id: "",
       name: "",
       age: "",
       email: ""
@@ -54,6 +53,23 @@ function FriendForm ({history}) {
     };
   };
 
+  const deleteMe = e => {
+    e.preventDefault();
+    if (window.confirm("Are you sure?")) {
+      axiosWithAuth()
+        .delete(`/friends/${friendId}`)
+        .then(res => {
+          console.log(res);
+          history.push('/friends');
+        })
+        .catch(err => {
+          console.log("Err is: ", err);
+      });
+    } else {
+      console.log("You pressed Cancel");
+    }
+  };
+
   return (
     <div>
       <form onSubmit={submit}>
@@ -82,6 +98,7 @@ function FriendForm ({history}) {
           placeholder="email"
         /><br />
         <button type="submit">Submit</button>
+        <button onClick={deleteMe}>Delete</button>
       </form>
     </div>
   );
