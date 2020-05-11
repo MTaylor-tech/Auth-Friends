@@ -18,7 +18,7 @@ export default function FriendList() {
 
 
   return (
-    <div>
+    <div className="friendList">
       {list.map(f=><FriendCard friend={f} key={f.id} />)}
     </div>
   );

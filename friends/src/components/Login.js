@@ -10,6 +10,10 @@ class Login extends React.Component {
     }
   };
 
+  componentDidMount () {
+    console.log(this.props);
+}
+
   handleChange = e => {
     this.setState({
       credentials: {
@@ -25,6 +29,7 @@ class Login extends React.Component {
       .post("/login", this.state.credentials)
       .then(res => {
         localStorage.setItem("token", res.data.payload);
+        this.props.func();
         this.props.history.push("/friends");
       })
       .catch(err => {
@@ -34,7 +39,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="loginForm">
         <form onSubmit={this.login}>
           <label htmlFor="username">Username: </label>
           <input
@@ -43,7 +48,7 @@ class Login extends React.Component {
             value={this.state.credentials.username}
             onChange={this.handleChange}
             placeholder="Username"
-          />
+          /><br />
           <label htmlFor="password">Password: </label>
           <input
             type="password"
@@ -51,7 +56,7 @@ class Login extends React.Component {
             value={this.state.credentials.password}
             onChange={this.handleChange}
             placeholder="Password"
-          />
+          /><br />
           <button>Log in</button>
         </form>
       </div>

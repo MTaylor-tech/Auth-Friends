@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 
-export default function Logout({history}) {
+export default function Logout({history, func}) {
 
   useEffect(()=>{
     localStorage.removeItem("token");
+    func();
     history.push("/");
-  },[history])
+  },[history, func])
 
   return (
     <div></div>
