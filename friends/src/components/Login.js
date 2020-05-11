@@ -10,10 +10,6 @@ class Login extends React.Component {
     }
   };
 
-  componentDidMount () {
-    console.log(this.props);
-}
-
   handleChange = e => {
     this.setState({
       credentials: {
